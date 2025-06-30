@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue basic</title>
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="container pt-5" id="app">
+    <div class="card">
+        <h1>{{ title }}</h1>
+        <div class="form-control">
+            <input type="text"
+                   v-bind:placeholder="
+                   placeholderStr"
+                   v-bind:value="inputValue"
+                   v-on:input="inputChangeHandler"
+                   v-on:keydown.enter="addNewNote"
+            >
+        </div>
+        <h2>Input value: {{ inputValue }}</h2>
+        <button class="btn" v-on:click="addNewNote">Додати</button>
+        <hr/>
+        <ul class="list" v-if="notes.length">
+            <li class="list-item" v-for="(note, index) in notes">{{ index + 1 }}: {{ toUpperCase(note) }}
+                <button class="btn danger" v-on:click="removeNote(index, $event)">Видалити</button>
+            </li>
+        </ul>
+        <div v-else>Нотатків нема else</div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
