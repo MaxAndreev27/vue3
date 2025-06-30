@@ -11,13 +11,14 @@
 <body>
 <div class="container pt-5" id="app">
     <div class="card">
-        <h1>{{ title }}</h1>
+        <h1 :style="{
+        color: inputValue.length>5 ? 'red' : 'green',
+        fontSize: inputValue.length>5 ? '3rem' : '2.2rem'
+        }">{{ title }}</h1>
         <div class="form-control">
             <input type="text"
-                   :placeholder="
-                   placeholderStr"
-                   :value="inputValue"
-                   @input="inputChangeHandler"
+                   :placeholder="placeholderStr"
+                   v-model="inputValue"
                    @keydown.enter="addNewNote"
             >
         </div>
@@ -25,10 +26,21 @@
         <button class="btn" @click="addNewNote">Додати</button>
         <hr/>
         <ul class="list" v-if="notes.length">
-            <li class="list-item" v-for="(note, index) in notes">{{ index + 1 }}: {{ toUpperCase(note) }}
+            <li class="list-item" v-for="(note, index) in notes">
+                <!--                <span :class="note.length > 5 ? 'danger' : 'primary'">-->
+                <!--                    {{ index + 1 }}: {{ toUpperCase(note) }}-->
+                <!--                </span>-->
+                <!--                <span :class="{-->
+                <!--                    'primary': true,-->
+                <!--                    'bold': note.length > 5-->
+                <!--                }">
+                </span>-->
+                <span :class="['primary', {'bold': note.length > 5 }]">
+                    {{ index + 1 }}: {{ toUpperCase(note) }}
+                </span>
                 <button class="btn danger" @click="removeNote(index, $event)">Видалити</button>
             </li>
-            <hr />
+            <hr/>
             <li>Загальна кількість: {{ notes.length }} | {{ doubleCountComputed }}</li>
         </ul>
         <div v-else>Нотатків нема else</div>
