@@ -28,6 +28,24 @@ const App = {
         removeNote(index, event) {
             console.log(index);
             this.notes.splice(index, 1);
+        },
+        doubleCount() {
+            console.log('doubleCount');
+            return this.notes.length * 2;
+        }
+    },
+    computed: {
+        doubleCountComputed() {
+            console.log('doubleCountComputed');
+            return this.notes.length * 2;
+        }
+    },
+    watch: {
+        inputValue(value) {
+            if (value.length > 10) {
+                this.inputValue = '';
+            }
+            console.log('input Value changed', value);
         }
     }
 }
