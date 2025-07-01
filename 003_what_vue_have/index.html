@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue basic</title>
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="container pt-5" id="app">
+    <div class="card center">
+        <div>
+            <h1>Other Directives</h1>
+            <h1 v-html="myHtml"></h1>
+            <h1>{{ title }}</h1>
+            <h1 v-text="title"></h1>
+            <h1 v-once>{{ title }}</h1>
+            <h1 v-pre>{{ title }}</h1>
+            <button class="btn danger" @click="title='Goodbay'">Змінити</button>
+        </div>
+
+        <div>
+            <h1>V-For Object</h1>
+            <ul class="list" v-if="person">
+                <li class="list-item" v-for="(value, key) in person">
+                    {{ key }}: {{ value }}
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h1>V-For Array</h1>
+            <ul class="list" v-if="items.length">
+                <li class="list-item form-control" v-for="(item, i) in items" :key="item">
+                    <label>{{ i }}: {{ item }}</label>
+                    <input class="" type="text" @click.stop />
+                    <button class="btn danger" @click="items.splice(i, 1)">del</button>
+                </li>
+            </ul>
+            <h3 v-show="!items.length">Немає елементів</h3>
+        </div>
+
+        <div>
+            <h1>Ref example</h1>
+            <div class="form-control">
+                <input type="text" @keydown.enter="addItem" ref="myInput" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
